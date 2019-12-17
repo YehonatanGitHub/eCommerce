@@ -1,0 +1,36 @@
+.tall {
+  height: 1000vh;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
+.topButton {
+  margin-top: 9px !important;
+  position: absolute;
+  right: 8px;
+}
+.divHeight {
+  height: 700px;
+}
+
+.sideTitel {
+  margin-top: 28px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+}
+
+.hrCart {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.demo-control:hover {
+  background-color: #e2321a;
+  color: #fff;
+}
+
+:host >>> .ng-sidebar {
+  width: 330px;
+}

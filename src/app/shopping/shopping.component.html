@@ -1,0 +1,37 @@
+<ng-sidebar-container class="tall">
+  <!-- A sidebar -->
+
+  <ng-sidebar
+    [(opened)]="_opened"
+    position="left"
+    [dock]="true"
+    [dockedSize]="'65px'"
+    [mode]="push"
+  >
+    <!-- <div class="container-fluid">
+      <div class="row">
+
+      </div>
+    </div> -->
+    <div class="box col-12 divHeight ">
+      <div class="container">
+        <div class="row">
+          <h6 class="sideTitel">Admin Panal</h6>
+          <button class="btn btn-success topButton" (click)="_toggleSidebar()">
+            <i *ngIf="_opened" class="fas fa-angle-double-left"></i>
+            <i *ngIf="!_opened" class="fas fa-angle-double-right"></i>
+          </button>
+        </div>
+      </div>
+      <hr class="hrCart" />
+      <div class="sideBarContent container">
+        <app-sidebar></app-sidebar>
+      </div>
+    </div>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content class=" col ml-2 nopadding divHeight ">
+    <app-products></app-products>
+  </div>
+</ng-sidebar-container>

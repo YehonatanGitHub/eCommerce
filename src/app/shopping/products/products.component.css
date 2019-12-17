@@ -1,0 +1,50 @@
+.navbarNav {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: rgba(175, 228, 42, 0.903);
+}
+/* background-color: rgba(72, 156, 27, 0.903); */
+li {
+  border-right: 1px solid #bbb;
+}
+
+li a:hover {
+  background-color: rgba(65, 138, 25, 0.903);
+}
+
+li:last-child {
+  border-right: none;
+}
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.cardList {
+  /* display: flex; */
+  /* flex-direction: row; */
+  justify-content: center;
+  /* align-items: center; */
+}
