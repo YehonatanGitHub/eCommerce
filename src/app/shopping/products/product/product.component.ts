@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { DataService } from 'src/app/shared/data.service';
 // import { Product } from './product.model';
 
 @Component({
@@ -8,19 +8,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  loadedProducts: any = [];
+  public loadedProducts = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.fetchProducts();
+    this.dataService.fetchProducts()
+      .subscribe(data => this.loadedProducts = data);
   }
-  private fetchProducts() {
-    this.http.get('http://localhost:3000/admin/products')
-      .subscribe(products => {
-        this.loadedProducts = products;
-        console.log(products);
-      });
-  }
+
 }
 
