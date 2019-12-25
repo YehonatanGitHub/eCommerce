@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
 import { Product } from './product.model';
 import { ShoppingService } from '../../shopping.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -10,21 +11,25 @@ import { ShoppingService } from '../../shopping.service';
 })
 export class ProductComponent implements OnInit {
   public loadedProducts = [];
+  private refreshSub: Subscription;
+  private getDataSub: Subscription;
 
-  constructor(private dataService: DataService, private shoppingService: ShoppingService) { }
-
-
-  ngOnInit() {
-    this.shoppingService.refreshProducts.subscribe((is: Boolean) => {
-      console.log(is);
-      this.getAllProducts();
+  constructor(private dataService: DataService, private shoppingService: ShoppingService) {
+    this.refreshSub = this.shoppingService.refreshProducts.subscribe(() => {
+      console.log("getallproducts");
+      this.ngOnInit();
     });
-    this.getAllProducts();
-
   }
 
+  ngOnInit() {
+    this.getAllProducts();
+  }
+  ngOnDestroy(): void {
+    this.refreshSub.unsubscribe();
+    this.getDataSub.unsubscribe();
+  }
   private getAllProducts() {
-    this.dataService.fetchProducts()
+    this.getDataSub = this.dataService.fetchProducts()
       .subscribe((data) => this.loadedProducts = data);
   }
 

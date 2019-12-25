@@ -5,7 +5,7 @@ import { Subject } from 'rxjs'
 export class ShoppingService {
 
     statuseEditProduct = new Subject<Product>();
-    refreshProducts = new Subject<Boolean>();
+    refreshProducts = new Subject<void>();
 
     constructor() { }
 

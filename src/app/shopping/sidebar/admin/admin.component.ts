@@ -81,12 +81,7 @@ export class AdminComponent implements OnInit {
       console.log("NEW product sent to POST");
       this.newProduct = postData;
       this.http.post('http://localhost:3000/admin/add-product', postData)
-        // .pipe(
-        //   tap(() => {
-        //     this.shoppingService.refreshProducts.next();
-        //   })
-        // )
-        .subscribe(responseData => {
+          .subscribe(responseData => {
           console.log(responseData);
         });
       this.productForm.setValue({
@@ -111,10 +106,6 @@ export class AdminComponent implements OnInit {
         .subscribe(responseData => {
           console.log(responseData);
         });
-
-      this.shoppingService.refreshProducts.next(true);
-
-
       console.log("Edit product sent");
       this.productForm.setValue({
         proname: "",
@@ -126,6 +117,7 @@ export class AdminComponent implements OnInit {
       this._opened = false;
 
     }
+    this.shoppingService.refreshProducts.next();
   }
 }
 
