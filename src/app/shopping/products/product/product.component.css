@@ -62,3 +62,7 @@ li:last-child {
   margin-left: 0px;
     margin-right: 0px;
 }
+
+.btn-danger{
+  color: white;
+}
