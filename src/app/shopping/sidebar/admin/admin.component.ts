@@ -6,7 +6,6 @@ import { Product } from '../../products/product/product.model'
 import { ShoppingService } from '../../shopping.service';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: "app-admin",
@@ -81,8 +80,9 @@ export class AdminComponent implements OnInit {
       console.log("NEW product sent to POST");
       this.newProduct = postData;
       this.http.post('http://localhost:3000/admin/add-product', postData)
-          .subscribe(responseData => {
+        .subscribe(responseData => {
           console.log(responseData);
+          this.shoppingService.refreshProducts.next();
         });
       this.productForm.setValue({
         proname: "",
@@ -102,9 +102,9 @@ export class AdminComponent implements OnInit {
       }
       console.log(productEditInfo);
       this.http.post('http://localhost:3000/admin/edit-product', productEditInfo)
-
         .subscribe(responseData => {
           console.log(responseData);
+          this.shoppingService.refreshProducts.next();
         });
       console.log("Edit product sent");
       this.productForm.setValue({
@@ -115,9 +115,7 @@ export class AdminComponent implements OnInit {
       });
       this.editProduct = undefined;
       this._opened = false;
-
     }
-    this.shoppingService.refreshProducts.next();
   }
 }
 
