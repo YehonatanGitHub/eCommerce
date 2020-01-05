@@ -1,8 +1,55 @@
-<div class="container-fluid container1">
-  <div class="row ">
-    <div class="col box">
-      <p>Register !</p>
+<div class="container-fluid container1  ">
+  <div class="row  ">
+    <div class="col-5 box" style="padding-top: 6px; padding-bottom: 10px;">
+      <h3 class="text-center mb-4">Sign-up</h3>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="firstStep">
+          <div class="form-group row">
+            <label for="tz" class="col-sm-4 col-form-label">ID Number:</label>
+            <div class="col-sm-7">
+              <input formControlName="tz" type="number" id="tz" class="form-control" name="tz" />
+              <span *ngIf="!signupForm.get('firstStep.tz').valid && signupForm.get('firstStep.tz').touched"
+                class="help-block">Please
+                enter a valid TZ ID!</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-4 col-form-label">Email:</label>
+            <div class="col-sm-7 ">
+              <input formControlName="email" type="email" id="email" class="form-control" name="email" />
+              <span *ngIf="!signupForm.get('firstStep.email').valid && signupForm.get('firstStep.email').touched"
+                class="help-block">Please
+                enter a valid email!</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-4 col-form-label">Password:</label>
+            <div class="col-sm-7 ">
+              <input formControlName="password" (input)="chechPassword($event)" type="text" id="password"
+                class="form-control" name="password" />
+              <!-- <span class="help-block" *ngIf="!password.valid && password.touched">password can't be empty</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="confirmPassword" class="col-sm-4 col-form-label">Confirm Password:</label>
+            <div class="col-sm-7 ">
+              <input formControlName="confirmPassword" type="text" id="picture" class="form-control"
+                name="confirmPassword" />
+              <!-- <span class="help-block" *ngIf="!confirmPassword.valid && confirmPassword.touched">confirm password can't be -->
+              <!-- empty</span> -->
+            </div>
+          </div>
+          <!-- <div class="checkbox">
+            <label class="small">
+              <input name="terms" type="checkbox">I have read and agree to the <a href="#">terms of service</a>
+            </label>
+          </div> -->
+        </div>
+
+        <button class="btn btn-primary float-right btn-lg" type="submit">
+          Next
+        </button>
+      </form>
     </div>
-    <div class="col box ml-2"><p>Register works!</p></div>
   </div>
 </div>

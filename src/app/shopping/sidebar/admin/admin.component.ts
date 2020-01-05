@@ -79,6 +79,7 @@ export class AdminComponent implements OnInit {
     if (this.editProduct == undefined) {
       console.log("NEW product sent to POST");
       this.newProduct = postData;
+
       this.http.post('http://localhost:3000/admin/add-product', postData)
         .subscribe(responseData => {
           console.log(responseData);
