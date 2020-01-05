@@ -9,8 +9,13 @@
             <div class="col-sm-7">
               <input formControlName="tz" type="number" id="tz" class="form-control" name="tz" />
               <span *ngIf="!signupForm.get('firstStep.tz').valid && signupForm.get('firstStep.tz').touched"
-                class="help-block">Please
-                enter a valid TZ ID!</span>
+                class="help-block">
+                <span *ngIf="!signupForm.get('firstStep.tz').errors['userExists']">
+                  User already exists, try another ID</span>
+                Please enter a 9 digit ID!</span>
+
+
+
             </div>
           </div>
           <div class="form-group row">
@@ -27,7 +32,14 @@
             <div class="col-sm-7 ">
               <input formControlName="password" (input)="chechPassword($event)" type="text" id="password"
                 class="form-control" name="password" />
-              <!-- <span class="help-block" *ngIf="!password.valid && password.touched">password can't be empty</span> -->
+              <span *ngIf="!signupForm.get('firstStep.password').valid && signupForm.get('firstStep.password').touched"
+                class="help-block">
+
+                Password must be at least 6 characters</span>
+              <!-- <span *ngIf="(signupForm.get('firstStep.password').errprs[minlength.requiredLength]  6)"
+                class="help-block">
+                minlength > 5 </span> -->
+
             </div>
           </div>
           <div class="form-group row">
@@ -35,8 +47,14 @@
             <div class="col-sm-7 ">
               <input formControlName="confirmPassword" type="text" id="picture" class="form-control"
                 name="confirmPassword" />
-              <!-- <span class="help-block" *ngIf="!confirmPassword.valid && confirmPassword.touched">confirm password can't be -->
-              <!-- empty</span> -->
+              <span class="help-block"
+                *ngIf="!signupForm.get('firstStep.confirmPassword').valid && signupForm.get('firstStep.confirmPassword').touched">
+                <span *ngIf="!signupForm.get('firstStep.confirmPassword').errors['passwordIsNotConfirmed']">
+                  Cofirm password doesn't match password</span>
+                <!-- <span
+                  *ngIf="!signupForm.get('firstStep.confirmPassword').errors['required'] && !signupForm.get('firstStep.confirmPassword').errors['passwordIsNotConfirmed']">
+                  Cofirm password can't be empty</span> -->
+                Cofirm password doesn't match password</span>
             </div>
           </div>
           <!-- <div class="checkbox">
@@ -46,7 +64,7 @@
           </div> -->
         </div>
 
-        <button class="btn btn-primary float-right btn-lg" type="submit">
+        <button class="btn btn-primary float-right btn-lg" type="submit" [disabled]="!signupForm.valid">
           Next
         </button>
       </form>
