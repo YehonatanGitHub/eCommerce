@@ -7,11 +7,11 @@
           <div class="form-group row">
             <label for="tz" class="col-sm-4 col-form-label">ID Number:</label>
             <div class="col-sm-7">
-              <input formControlName="tz" type="number" id="tz" class="form-control" name="tz" />
+              <input formControlName="tz" type="string" id="tz" class="form-control" name="tz" />
               <span *ngIf="!signupForm.get('firstStep.tz').valid && signupForm.get('firstStep.tz').touched"
                 class="help-block">
-                <span *ngIf="!signupForm.get('firstStep.tz').errors['userExists']">
-                  User already exists, try another ID</span>
+                <!-- <span *ngIf="!signupForm.get('firstStep.tz').errors['userExists']">
+                  User already exists, try another ID</span> -->
                 Please enter a 9 digit ID!</span>
 
 
@@ -64,10 +64,12 @@
           </div> -->
         </div>
 
-        <button class="btn btn-primary float-right btn-lg" type="submit" [disabled]="!signupForm.valid">
+        <button class="btn btn-primary float-right btn-lg" type="submit">
           Next
         </button>
       </form>
     </div>
   </div>
 </div>
+
+<!-- [disabled]="!signupForm.valid" -->
