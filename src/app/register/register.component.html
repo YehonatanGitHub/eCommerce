@@ -1,7 +1,7 @@
 <div class="container-fluid container1  ">
   <div class="row  ">
-    <div class="col-5 box" style="padding-top: 6px; padding-bottom: 10px;">
-      <h3 class="text-center mb-4">Sign-up</h3>
+    <div class="col-5 ml-5 box" style="padding-top: 6px; padding-bottom: 10px;">
+      <h3 class="text-center mb-4">Sign-up Step-1</h3>
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div formGroupName="firstStep">
           <div class="form-group row">
@@ -10,12 +10,11 @@
               <input formControlName="tz" type="string" id="tz" class="form-control" name="tz" />
               <span *ngIf="!signupForm.get('firstStep.tz').valid && signupForm.get('firstStep.tz').touched"
                 class="help-block">
-                <!-- <span *ngIf="!signupForm.get('firstStep.tz').errors['userExists']">
-                  User already exists, try another ID</span> -->
-                Please enter a 9 digit ID!</span>
-
-
-
+                <span *ngIf="signupForm.get('firstStep.tz').errors['pattern']">
+                  Please enter a 9 digit ID!</span>
+                <span *ngIf="signupForm.get('firstStep.tz').errors['userExists']">
+                  User already exists, try another ID</span>
+              </span> <!-- Please enter a 9 digit ID! -->
             </div>
           </div>
           <div class="form-group row">
@@ -34,18 +33,16 @@
                 class="form-control" name="password" />
               <span *ngIf="!signupForm.get('firstStep.password').valid && signupForm.get('firstStep.password').touched"
                 class="help-block">
-
                 Password must be at least 6 characters</span>
               <!-- <span *ngIf="(signupForm.get('firstStep.password').errprs[minlength.requiredLength]  6)"
                 class="help-block">
                 minlength > 5 </span> -->
-
             </div>
           </div>
           <div class="form-group row">
             <label for="confirmPassword" class="col-sm-4 col-form-label">Confirm Password:</label>
             <div class="col-sm-7 ">
-              <input formControlName="confirmPassword" type="text" id="picture" class="form-control"
+              <input formControlName="confirmPassword" type="text" id="confirmPassword" class="form-control"
                 name="confirmPassword" />
               <span class="help-block"
                 *ngIf="!signupForm.get('firstStep.confirmPassword').valid && signupForm.get('firstStep.confirmPassword').touched">
@@ -63,13 +60,61 @@
             </label>
           </div> -->
         </div>
-
         <button class="btn btn-primary float-right btn-lg" type="submit">
           Next
         </button>
       </form>
     </div>
+
+    <!-- [disabled]="!signupForm.valid" -->
+
+
+    <div *ngIf="show" class="col-5 ml-5 box" style="padding-top: 6px; padding-bottom: 10px;">
+      <h3 class="text-center mb-4">Sign-up Step-2</h3>
+      <form (ngSubmit)="onSubmit2(form2)" #form2="ngForm">
+
+        <div>
+          <div class="form-group row">
+            <label for="f_name" class="col-sm-4 col-form-label">First Name:</label>
+            <div class="col-sm-7">
+              <input type="text" id="f_name" class="form-control" name="f_name" required ngModel #f_name="ngModel" />
+              <span *ngIf="!f_name.valid && f_name.touched" class="help-block">
+                This is a mandatory field
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="l_name" class="col-sm-4 col-form-label">Last Name:</label>
+            <div class="col-sm-7 ">
+              <input type="text" id="l_name" class="form-control" name="l_name" required ngModel #l_name="ngModel" />
+              <span *ngIf="!l_name.valid && l_name.touched" class="help-block">
+                This is a mandatory field</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="city" class="col-sm-4 col-form-label">City:</label>
+            <div class="col-sm-7 ">
+              <input type="text" id="city" class="form-control" name="city" required ngModel #city="ngModel" />
+              <span *ngIf="!city.valid && city.touched" class="help-block">
+                This is a mandatory field</span>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="street" class="col-sm-4 col-form-label">Street:</label>
+            <div class="col-sm-7 ">
+              <input type="text" id="street" class="form-control" name="street" required ngModel #street="ngModel" />
+              <span class="help-block" *ngIf="!street.valid && street.touched">
+
+                This is a mandatory field</span>
+            </div>
+          </div>
+
+        </div>
+        <button class="btn btn-primary float-right btn-lg" type="submit" [disabled]="!form2.valid">
+          Submit
+        </button>
+      </form>
+    </div>
   </div>
 </div>
-
-<!-- [disabled]="!signupForm.valid" -->
