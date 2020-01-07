@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { responseData } from '../../app/register/responseData.model'
-import { Register1 } from '../../app/register/register1.model'
+import { ListCity } from '../../app/register/ListCity.model'
 import { newUser } from '../../app/register/newUser.model'
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
   passwordCheck = ''; // Confirm with password
   show: Boolean = false;
-
+  listCitys: ListCity[] = [];
+  public cityData;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -37,9 +38,16 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.signupForm.value.firstStep);
     this.show = true;
-    // const idInfo: Register1 = {
-    //   tz: this.signupForm
-    // }
+
+    let url = 'https://raw.githubusercontent.com/royts/israel-cities/master/israel-cities.json'
+    // this.http.get<ListCity>(url).subscribe(result => {
+    //      console.log(result);
+    // this.listCitys = result; 
+    // }, error => console.error(error));
+    this.http.get(url).subscribe(response => {
+      this.cityData = response;
+      console.log(this.cityData);
+    });
   }
 
   onSubmit2(form: NgForm) {
