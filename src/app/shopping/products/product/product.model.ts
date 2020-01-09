@@ -3,5 +3,9 @@ export interface Product {
     proname: string;
     price: number;
     picture: string;
-    category: string;
+    category: {
+        _id?: string;
+        name: string;
+    }
+
 }

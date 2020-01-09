@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   show: Boolean = false;
   listCitys: ListCity[] = [];
   public cityData;
-
+  token: string = null;
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
@@ -40,10 +40,6 @@ export class RegisterComponent implements OnInit {
     this.show = true;
 
     let url = 'https://raw.githubusercontent.com/royts/israel-cities/master/israel-cities.json'
-    // this.http.get<ListCity>(url).subscribe(result => {
-    //      console.log(result);
-    // this.listCitys = result; 
-    // }, error => console.error(error));
     this.http.get(url).subscribe(response => {
       this.cityData = response;
       console.log(this.cityData);
@@ -64,9 +60,12 @@ export class RegisterComponent implements OnInit {
     }
     console.log(newUser);
     this.http.post('http://localhost:3000/users/add-user', newUser)
-      .subscribe(response => {
+      .subscribe((response: any) => {
         console.log(response);
+        localStorage.setItem("token", response.token)
       });
+
+
     this.router.navigate(['/']);
   }
 
@@ -102,14 +101,5 @@ export class RegisterComponent implements OnInit {
     return promise;
   }
 
-  // onSubmit(postData: Register1) {
-  //   console.log(postData);
 
-  //   this.http.post('http://localhost:3000/users/checkifuser', postData)
-  //     .subscribe(responseData => {
-  //       console.log(responseData);
-  //       // this.shoppingService.refreshProducts.next();
-  //     });
-
-  // }
 }

@@ -21,8 +21,6 @@ export class AdminComponent implements OnInit {
   isEdit: boolean = false;
   isNew: boolean = false;
   private _opened: boolean = false;
-  private newProduct: Product;
-
   waitForOneSecond() {
     return new Promise(resolve => {
       setTimeout(() => {
@@ -40,14 +38,16 @@ export class AdminComponent implements OnInit {
         this.isNew = false;
         console.log(this.isEdit);
         console.log(this.editProduct);
-        console.log(this.editProduct._id);
-        this.waitForOneSecond().then(() =>
+        this.waitForOneSecond().then(() => {
           this.productForm.setValue({
             proname: this.editProduct.proname,
             price: this.editProduct.price,
             picture: this.editProduct.picture,
-            category: this.editProduct.category
+            category: this.editProduct.category._id
+
           })
+        }
+
         );
       }
     );
@@ -78,7 +78,6 @@ export class AdminComponent implements OnInit {
   onSubmit(postData: Product) {
     if (this.editProduct == undefined) {
       console.log("NEW product sent to POST");
-      this.newProduct = postData;
 
       this.http.post('http://localhost:3000/admin/add-product', postData)
         .subscribe(responseData => {

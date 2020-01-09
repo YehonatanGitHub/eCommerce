@@ -1,6 +1,44 @@
-<p>login here</p>
-First name: <input type="text" name="FirstName" value="Mickey" /><br />
-Last name: <input type="text" name="LastName" value="Mouse" /><br />
+<div class="container">
+  container
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <h4 class="text-center mb-4">Login</h4>
+    <div class="form-group row">
+      <label for="email" class="col-sm-3 col-form-label">Email:</label>
+      <div class="col-sm-9 ">
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          required
+          ngModel
+          #email="ngModel"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-sm-3 col-form-label">Password:</label>
+      <div class="col-sm-9 ">
+        <input
+          type="text"
+          id="password"
+          class="form-control"
+          name="password"
+          required
+          ngModel
+          #password="ngModel"
+        />
+      </div>
+    </div>
+    <button class="btn btn-primary  " type="submit">
+      Login
+    </button>
+    <span *ngIf="error" class="help-block">
+      {{ error }}
+    </span>
+  </form>
+</div>
+
 <hr />
 <a class="navbar-brand" routerLink="/register">Register</a>
 <a class="navbar-brand" routerLink="/shopping">shopping</a>

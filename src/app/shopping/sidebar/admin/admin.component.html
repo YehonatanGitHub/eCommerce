@@ -8,39 +8,90 @@
     <div id="product-data">
       <div class="form-group">
         <label for="proname">Product Name</label>
-        <input type="text" id="proname" class="form-control" ngModel name="proname" required proname
-          #proname="ngModel" />
+        <input
+          type="text"
+          id="proname"
+          class="form-control"
+          ngModel
+          name="proname"
+          required
+          proname
+          #proname="ngModel"
+        />
 
-        <span class="help-block" *ngIf="!proname.valid && proname.touched">Name can't be empty</span>
+        <span class="help-block" *ngIf="!proname.valid && proname.touched"
+          >Name can't be empty</span
+        >
       </div>
       <div class="form-group">
         <label for="price">Product Price</label>
-        <input type="number" id="price" class="form-control" ngModel name="price" required price #price="ngModel" />
-        <span class="help-block" *ngIf="!price.valid && price.touched">Price can't be empty</span>
+        <input
+          type="number"
+          id="price"
+          class="form-control"
+          ngModel
+          name="price"
+          required
+          price
+          #price="ngModel"
+        />
+        <span class="help-block" *ngIf="!price.valid && price.touched"
+          >Price can't be empty</span
+        >
       </div>
       <div class="form-group">
         <label for="picture">Picture URL</label>
-        <input type="text" id="picture" class="form-control" ngModel name="picture" required picture
-          #picture="ngModel" />
-        <span class="help-block" *ngIf="!picture.valid && picture.touched">picture can't be empty</span>
+        <input
+          type="text"
+          id="picture"
+          class="form-control"
+          ngModel
+          name="picture"
+          required
+          picture
+          #picture="ngModel"
+        />
+        <span class="help-block" *ngIf="!picture.valid && picture.touched"
+          >picture can't be empty</span
+        >
       </div>
     </div>
     <div class="form-group">
       <label for="category">Category</label>
-      <select id="category" type="text" class="form-control" ngModel name="category" required category
-        #category="ngModel">
+      <select
+        id="category"
+        type="text"
+        class="form-control"
+        ngModel
+        name="category"
+        required
+        category
+        #category="ngModel"
+      >
         <option value="5e0a262046905032ec4de42c">Vegetables & Fruits</option>
         <option value="5e0a260204054a1db8cb39e5">Milk & Eggs</option>
         <option value="5e0a262f2c90405e84730daf">Meat & Fish</option>
-        <option value="5e0a263aa3f73f03c8aafda3 ">Wine & Drinks</option>
+        <option value="5e0a263aa3f73f03c8aafda3">Wine & Drinks</option>
         <option value="5e0a1eb5fda1975c88f295bf">Bakery</option>
       </select>
-      <span class="help-block" *ngIf="!category.valid && category.touched">category can't be empty</span>
+      <span class="help-block" *ngIf="!category.valid && category.touched"
+        >category can't be empty</span
+      >
     </div>
-    <button class="btn btn-primary" *ngIf="isNew" type="submit" [disabled]="!postForm.valid">
+    <button
+      class="btn btn-primary"
+      *ngIf="isNew"
+      type="submit"
+      [disabled]="!postForm.valid"
+    >
       Save New Product
     </button>
-    <button class="btn btn-warning" *ngIf="isEdit" type="submit" [disabled]="!postForm.valid">
+    <button
+      class="btn btn-warning"
+      *ngIf="isEdit"
+      type="submit"
+      [disabled]="!postForm.valid"
+    >
       Save Updates
     </button>
   </form>
