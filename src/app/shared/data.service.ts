@@ -5,7 +5,7 @@ import { Product } from '../shopping/products/product/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-
+    // test new auth branch
     constructor(private http: HttpClient) { }
 
     fetchProducts() {
