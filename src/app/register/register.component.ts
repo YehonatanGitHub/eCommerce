@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { responseData } from '../../app/register/responseData.model'
 import { ListCity } from '../../app/register/ListCity.model'
 import { newUser } from '../../app/register/newUser.model'
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { DataService } from '../shared/data.service';
+import { AuthService } from '../shared/auth.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   listCitys: ListCity[] = [];
   public cityData;
   token: string = null;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -39,16 +40,13 @@ export class RegisterComponent implements OnInit {
     console.log(this.signupForm.value.firstStep);
     this.show = true;
 
-    let url = 'https://raw.githubusercontent.com/royts/israel-cities/master/israel-cities.json'
-    this.http.get(url).subscribe(response => {
-      this.cityData = response;
-      console.log(this.cityData);
-    });
+    this.dataService.fetchCityNames()
+      .subscribe((data) => this.cityData = data);
+    console.log(this.cityData);
   }
 
   onSubmit2(form: NgForm) {
     console.log(form.value);
-
     const newUser: newUser = {
       tz: this.signupForm.value.firstStep.tz,
       email: this.signupForm.value.firstStep.email,
@@ -59,13 +57,13 @@ export class RegisterComponent implements OnInit {
       street: form.value.street
     }
     console.log(newUser);
-    this.http.post('http://localhost:3000/users/add-user', newUser)
-      .subscribe((response: any) => {
-        console.log(response);
-        localStorage.setItem("token", response.token)
-      });
-
-
+    this.authService.registerUser(newUser)
+      .subscribe((res: any) => {
+        localStorage.setItem('token', res.token)
+        // this._router.navigate(['/special'])
+      },
+        err => console.log(err)
+      );
     this.router.navigate(['/']);
   }
 
@@ -80,13 +78,11 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-
   checkIfUserExists(control: FormControl): Promise<any> | Observable<any> {
     const tester = { tz: control.value }
     console.log(tester);
-
     const promise = new Promise<any>((resolve, reject) => {
-      this.http.post('http://localhost:3000/users/checkifuser', tester)
+      this.authService.checkIfUser(tester)
         .subscribe((responseData: responseData) => {
           console.log(responseData.result);
           if (responseData.result === true) {
@@ -100,6 +96,4 @@ export class RegisterComponent implements OnInit {
     });
     return promise;
   }
-
-
 }

@@ -16,16 +16,18 @@
               />
               <span
                 *ngIf="
-                  !signupForm.get('firstStep.tz').valid &&
+                  signupForm.get('firstStep.tz').valid &&
                   signupForm.get('firstStep.tz').touched
                 "
                 class="help-block"
               >
-                <span *ngIf="signupForm.get('firstStep.tz').errors['pattern']">
+                <span
+                  *ngIf="signupForm.get('firstStep.tz').hasError['pattern']"
+                >
                   Please enter a 9 digit ID!</span
                 >
                 <span
-                  *ngIf="signupForm.get('firstStep.tz').errors['userExists']"
+                  *ngIf="signupForm.get('firstStep.tz').hasError['userExists']"
                 >
                   User already exists, try another ID</span
                 >
@@ -34,7 +36,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="email" class="col-sm-4 col-form-label">Email (UserName):</label>
+            <label for="email" class="col-sm-4 col-form-label"
+              >Email (UserName):</label
+            >
             <div class="col-sm-7 ">
               <input
                 formControlName="email"
@@ -121,14 +125,15 @@
             </label>
           </div> -->
         </div>
-        <button class="btn btn-primary float-right btn-lg" type="submit">
+        <button
+          class="btn btn-primary float-right btn-lg"
+          type="submit"
+          [disabled]="!signupForm.valid"
+        >
           Next
         </button>
       </form>
     </div>
-
-    <!-- [disabled]="!signupForm.valid" -->
-
     <div
       *ngIf="show"
       class="col-5 ml-5 box"

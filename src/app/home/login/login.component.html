@@ -12,7 +12,6 @@
           name="email"
           required
           ngModel
-          #email="ngModel"
         />
       </div>
     </div>
@@ -20,17 +19,17 @@
       <label for="password" class="col-sm-3 col-form-label">Password:</label>
       <div class="col-sm-9 ">
         <input
-          type="text"
+          type="password"
           id="password"
           class="form-control"
           name="password"
           required
           ngModel
-          #password="ngModel"
+          minlength="6"
         />
       </div>
     </div>
-    <button class="btn btn-primary  " type="submit">
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
       Login
     </button>
     <span *ngIf="error" class="help-block">

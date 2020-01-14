@@ -6,6 +6,7 @@ import { Product } from '../../products/product/product.model'
 import { ShoppingService } from '../../shopping.service';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: "app-admin",
@@ -29,7 +30,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  constructor(private http: HttpClient, private shoppingService: ShoppingService) {
+  constructor(private http: HttpClient, private shoppingService: ShoppingService, private dataService: DataService) {
     this.activatedSub = this.shoppingService.statuseEditProduct.subscribe(
       (editProduct: Product) => {
         this.editProduct = editProduct;
@@ -78,8 +79,7 @@ export class AdminComponent implements OnInit {
   onSubmit(postData: Product) {
     if (this.editProduct == undefined) {
       console.log("NEW product sent to POST");
-
-      this.http.post('http://localhost:3000/admin/add-product', postData)
+      this.dataService.addProduct(postData)
         .subscribe(responseData => {
           console.log(responseData);
           this.shoppingService.refreshProducts.next();
@@ -101,7 +101,7 @@ export class AdminComponent implements OnInit {
         category: postData.category
       }
       console.log(productEditInfo);
-      this.http.post('http://localhost:3000/admin/edit-product', productEditInfo)
+      this.dataService.editProduct(productEditInfo)
         .subscribe(responseData => {
           console.log(responseData);
           this.shoppingService.refreshProducts.next();
