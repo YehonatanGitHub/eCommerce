@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { SidebarModule } from "ng-sidebar";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -18,7 +18,7 @@ import { CartComponent } from "./shopping/sidebar/cart/cart.component";
 import { AdminComponent } from "./shopping/sidebar/admin/admin.component";
 import { OrderComponent } from "./order/order.component";
 import { ProductComponent } from "./shopping/products/product/product.component";
-
+import { TokenInterceptorService } from "./shared/token-interceprot.service"
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,13 @@ import { ProductComponent } from "./shopping/products/product/product.component"
     FormsModule,
     SidebarModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

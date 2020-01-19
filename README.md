@@ -7,3 +7,7 @@
 4. activate <!-- [disabled]="!signupForm.valid" --> on the register component HTML
 
 5. in register.component.ts I was not able to save the respons data from http city into listCitys: ListCity[] = [];....need help to check why.
+
+6. in Express - controllers/users.js line 114 - exports.login - I wasent able to populate the role.
+
+7. delet user.model.ts as im not using it

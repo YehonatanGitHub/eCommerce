@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { Product } from '../shopping/products/product/product.model';
+import { User } from '../home/login/user.model';
 import { Router } from '@angular/router'
+import { Subject } from 'rxjs'
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthService {
+
+    decodedToken: any;   // new Subject<User>();
 
     private _registerUrl = 'http://localhost:3000/users/add-user';
     private _checkIfUserUrl = 'http://localhost:3000/users/checkifuser';
     private _loginUrl = 'http://localhost:3000/users/login';
+
 
     constructor(private http: HttpClient, private _router: Router) { }
 
@@ -23,15 +28,13 @@ export class AuthService {
     loginUser(user) {
         return this.http.post<any>(this._loginUrl, user)
     }
-
     //   logoutUser() {
     //     localStorage.removeItem('token')
     //     this._router.navigate(['/events'])
     //   }
-
-    //   getToken() {
-    //     return localStorage.getItem('token')
-    //   }
+    getToken() {
+        return localStorage.getItem('token')
+    }
 
     loggedIn() {
         return !!localStorage.getItem('token')

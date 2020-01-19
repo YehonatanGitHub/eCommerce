@@ -1,5 +1,12 @@
 <div class="container">
-  container
+  <button
+    *ngIf="this.authService.decodedToken"
+    type="button"
+    class="btn btn-success btn-lg"
+  >
+    Start Shopping/Resume
+  </button>
+
   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
     <h4 class="text-center mb-4">Login</h4>
     <div class="form-group row">
@@ -32,12 +39,9 @@
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
       Login
     </button>
+    <a class="navbar-brand float-right" routerLink="/register"> or Sign-up</a>
     <span *ngIf="error" class="help-block">
       {{ error }}
     </span>
   </form>
 </div>
-
-<hr />
-<a class="navbar-brand" routerLink="/register">Register</a>
-<a class="navbar-brand" routerLink="/shopping">shopping</a>

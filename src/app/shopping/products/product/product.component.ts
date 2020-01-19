@@ -3,6 +3,8 @@ import { DataService } from 'src/app/shared/data.service';
 import { Product } from './product.model';
 import { ShoppingService } from '../../shopping.service';
 import { Subscription } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +16,7 @@ export class ProductComponent implements OnInit {
   private refreshSub: Subscription;
   private getDataSub: Subscription;
 
-  constructor(private dataService: DataService, private shoppingService: ShoppingService) {
+  constructor(private dataService: DataService, private shoppingService: ShoppingService, private _router: Router) {
     this.refreshSub = this.shoppingService.refreshProducts.subscribe(() => {
       console.log("getallproducts");
       this.ngOnInit();
@@ -30,7 +32,15 @@ export class ProductComponent implements OnInit {
   }
   private getAllProducts() {
     this.getDataSub = this.dataService.fetchProducts()
-      .subscribe((data) => this.loadedProducts = data);
+      .subscribe(
+        res => this.loadedProducts = res,
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/'])
+            }
+          }
+        });
   }
 
   clickEditProduct(editProduct: Product) {
