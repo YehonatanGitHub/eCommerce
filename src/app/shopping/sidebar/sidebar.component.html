@@ -1,2 +1,2 @@
-<app-admin></app-admin>
-<!-- <app-cart></app-cart> -->
+<app-admin *ngIf="authService.isAdmin()"></app-admin>
+<app-cart *ngIf="!authService.isAdmin()"></app-cart>

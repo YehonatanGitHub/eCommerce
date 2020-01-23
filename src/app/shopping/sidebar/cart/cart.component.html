@@ -1,12 +1,114 @@
-<p>cart works!</p>
-<p>
-  estas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet,
-  ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae
-  est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper
-  pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit
-  amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum
-  rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
-  pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus,
-  tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-  volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus,
-</p>
+<div class="container cart">
+  <button
+    type="button"
+    class="btn btn-danger"
+    data-dismiss="modal"
+    (click)="delAllCart()"
+  >
+    Delete All
+  </button>
+
+  <div class="row  " *ngFor="let product of loadedCart">
+    <div class="row cardList">
+      <button
+        class="fa fa-trash"
+        aria-hidden="true"
+        style="font-size:12px;color:red"
+        (click)="removeFromCart(product._id)"
+      ></button>
+      <div class="card">
+        <img class="card-img" src="{{ product.product.picture }}" alt="Vans" />
+      </div>
+      <div>
+        <p class="card-title">{{ product.product.proname }}</p>
+      </div>
+
+      <div>
+        <p>${{ product.total_cost }}</p>
+      </div>
+      <br />
+      <div>
+        <p>{{ product.qty }}</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container">
+      <div class="row">
+        <h5 class="col-6 total">Total: ${{ total }}</h5>
+
+        <a
+          class="navbar-brand float-right"
+          routerLink="/register"
+          style="cursor:pointer"
+          (click)="checkOut()"
+        >
+          <h5>Check Out</h5></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [ngClass]="{ show: showModal }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Select Quantity For:</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="showModal = false"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h5>{{ addProduct?.proname }}</h5>
+        <div class="number-input md-number-input">
+          <button
+            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+            class="minus"
+          ></button>
+          <input
+            class="quantity"
+            min="1"
+            name="quantity"
+            value="1"
+            type="number"
+            #myInput
+          />
+          <button
+            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+            class="plus"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          (click)="showModal = false"
+          class="btn btn-danger"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="addToCart(myInput.value)"
+          class="btn btn-success"
+          data-dismiss="modal"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

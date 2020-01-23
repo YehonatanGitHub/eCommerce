@@ -16,7 +16,8 @@
     <div class="box col-12 divHeight ">
       <div class="container">
         <div class="row">
-          <h6 class="sideTitel">Admin Panal</h6>
+          <h6 class="sideTitel" *ngIf="!authService.isAdmin()">Cart</h6>
+          <h6 class="sideTitel" *ngIf="authService.isAdmin()">Admin Panal</h6>
           <button class="btn btn-success topButton" (click)="_toggleSidebar()">
             <i *ngIf="_opened" class="fas fa-angle-double-left"></i>
             <i *ngIf="!_opened" class="fas fa-angle-double-right"></i>

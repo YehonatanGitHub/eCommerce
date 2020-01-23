@@ -1,13 +1,18 @@
 <div class="container">
   <button
-    *ngIf="this.authService.decodedToken"
+    *ngIf="authService.loggedIn()"
     type="button"
     class="btn btn-success btn-lg"
+    (click)="onClick()"
   >
     Start Shopping/Resume
   </button>
 
-  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <form
+    (ngSubmit)="onSubmit(form)"
+    *ngIf="!authService.loggedIn()"
+    #form="ngForm"
+  >
     <h4 class="text-center mb-4">Login</h4>
     <div class="form-group row">
       <label for="email" class="col-sm-3 col-form-label">Email:</label>

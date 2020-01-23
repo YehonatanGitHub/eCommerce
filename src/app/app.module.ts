@@ -19,6 +19,7 @@ import { AdminComponent } from "./shopping/sidebar/admin/admin.component";
 import { OrderComponent } from "./order/order.component";
 import { ProductComponent } from "./shopping/products/product/product.component";
 import { TokenInterceptorService } from "./shared/token-interceprot.service"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { TokenInterceptorService } from "./shared/token-interceprot.service"
     ReactiveFormsModule,
     FormsModule,
     SidebarModule.forRoot()
+
   ],
   providers: [
     {

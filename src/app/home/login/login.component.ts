@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/shared/auth.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "app-login",
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   error = null;
   public token: any;
   helper = new JwtHelperService();
-  user = false;
+
   constructor(private authService: AuthService, private _router: Router) { }
   ngOnInit() { }
 
@@ -27,15 +28,32 @@ export class LoginComponent implements OnInit {
         console.log(this.authService.decodedToken);
         if (this.authService.decodedToken.role == '5de3894a38512832c47e4670') {
           console.log('user is admin');
+          this.authService.adminUser = true;
           this._router.navigate(['/shopping'])
         } else {
           console.log('user is not admin');
-          this.user = true;
+          this.authService.regularUser = true;
         }
-      }, error => {
-        console.log(error);
-        this.error = error.error;
+      }, err => {
+        console.log('got the error');
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            // this._router.navigate(['/'])
+            console.log('need to route');
+
+          } else if (err.status >= 500) {
+            this._router.navigate(['/'])
+          }
+        }
+        this.error = err.error;
+        console.log(this.error);
+        console.log('error my message');
       });
     form.reset();
   }
+  onClick() {
+    this._router.navigate(['/shopping'])
+  }
+
+
 }

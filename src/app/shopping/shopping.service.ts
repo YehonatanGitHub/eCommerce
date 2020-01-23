@@ -6,7 +6,7 @@ export class ShoppingService {
 
     statuseEditProduct = new Subject<Product>();
     refreshProducts = new Subject<void>();
-
+    statuseAddProduct = new Subject<Product>();
     constructor() { }
 
 } 

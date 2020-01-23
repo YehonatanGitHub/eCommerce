@@ -17,4 +17,4 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('token');
     this.authService.decodedToken = this.helper.decodeToken(token);
   }
-}
+} 

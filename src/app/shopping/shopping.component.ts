@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ShoppingService } from './shopping.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: "app-shopping",
@@ -10,7 +11,7 @@ import { ShoppingService } from './shopping.service';
 export class ShoppingComponent implements OnInit {
   private _opened: boolean = true;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() { }
 

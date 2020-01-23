@@ -11,3 +11,5 @@
 6. in Express - controllers/users.js line 114 - exports.login - I wasent able to populate the role.
 
 7. delet user.model.ts as im not using it
+
+8. in cart.compoent in function removeFromCart need to awiat to delay the reaload. also this.total was not able to toFixed.

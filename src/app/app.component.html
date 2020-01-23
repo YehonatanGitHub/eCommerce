@@ -10,9 +10,18 @@
         <a href="mailto:info@healthfood.com">eMail us</a>
       </h5>
     </li>
-    <li class="nav-item">
-      <h6>Welcome {{ authService.decodedToken?.f_name }}</h6>
-    </li>
+    <div class="container">
+      <li class="nav-item lirow" *ngIf="authService.loggedIn()">
+        <h6>Welcome {{ authService.decodedToken?.f_name }}</h6>
+      </li>
+      <a
+        class="nav-link"
+        style="cursor:pointer"
+        *ngIf="authService.loggedIn()"
+        (click)="authService.logoutUser()"
+        ><h6>Logout</h6></a
+      >
+    </div>
   </ul>
 </nav>
 <router-outlet></router-outlet>

@@ -9,7 +9,8 @@ import { Subject } from 'rxjs'
 export class AuthService {
 
     decodedToken: any;   // new Subject<User>();
-
+    regularUser: boolean = false;
+    adminUser: boolean = false;
     private _registerUrl = 'http://localhost:3000/users/add-user';
     private _checkIfUserUrl = 'http://localhost:3000/users/checkifuser';
     private _loginUrl = 'http://localhost:3000/users/login';
@@ -39,5 +40,18 @@ export class AuthService {
     loggedIn() {
         return !!localStorage.getItem('token')
     }
+    logoutUser() {
+        localStorage.removeItem('token')
+        this._router.navigate(['/'])
+        this.adminUser = false;
+        this.regularUser = false;
+    }
+    isAdmin() {
+        if (this.decodedToken.role == "5de3894a38512832c47e4670") {
+            return true;
+        } else {
+            return false;
+        }
 
+    }
 }

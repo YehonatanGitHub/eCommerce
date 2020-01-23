@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "order", component: OrderComponent },
   { path: "products", component: ProductsComponent },
+  // this will call the GET /admin/products :
   {
     path: "shopping", component: ShoppingComponent,
     canActivate: [AuthGuard]
