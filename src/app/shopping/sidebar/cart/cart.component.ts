@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  public loadedCart: any = [];
   activatedSub2: Subscription;
   addProduct: Product = null;
   showModal: Boolean = false;
@@ -82,9 +81,9 @@ export class CartComponent implements OnInit {
     console.log(data);
     this.dataService.getCart(data)
       .subscribe(
-        res => this.loadedCart = res,
+        res => this.dataService.loadedCart = res,
         () => console.log("I'm done! getting cart"),
-        () => this.total = this.loadedCart.reduce((acc, cur) => acc + cur.total_cost, 0),
+        () => this.total = this.dataService.loadedCart.reduce((acc, cur) => acc + cur.total_cost, 0),
 
         // console.log(this.total)
         // const num = this.total;

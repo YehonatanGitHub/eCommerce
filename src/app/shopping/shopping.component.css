@@ -12,7 +12,7 @@
   right: 8px;
 }
 .divHeight {
-  height: 700px;
+  height: 1200px;
 }
 
 .sideTitel {
@@ -32,5 +32,11 @@
 }
 
 :host >>> .ng-sidebar {
-  width: 330px;
+  width: 470px;
+  height: 1400px;
+}
+
+.sideBarContent {
+  padding-left: 3px;
+  padding-right: 3px;
 }

@@ -6,7 +6,7 @@ import { Product } from '../shopping/products/product/product.model';
 @Injectable({ providedIn: 'root' })
 export class DataService {
 
-
+    public loadedCart: any = [];
 
     private _ProductsUrl = 'http://localhost:3000/admin/products';
     private _CityNames = 'https://raw.githubusercontent.com/royts/israel-cities/master/israel-cities.json';
@@ -16,7 +16,9 @@ export class DataService {
     private _getCart = 'http://localhost:3000/shop/cart';
     private _delFromCart = 'http://localhost:3000/shop/delfromcart';
     private _delAllFromCart = 'http://localhost:3000/shop/delallfromcart';
-
+    private _placeOrder = 'http://localhost:3000/shop/order';
+    private _getOrders = 'http://localhost:3000/shop/getOrders';
+    private _getProducts = 'http://localhost:3000/shop/getproducts';
     constructor(private http: HttpClient) { }
 
     fetchProducts() {
@@ -24,6 +26,12 @@ export class DataService {
     }
     fetchCityNames() {
         return this.http.get<any>(this._CityNames)
+    }
+    getOrders() {
+        return this.http.get<any>(this._getOrders)
+    }
+    getProducts() {
+        return this.http.get<any>(this._getProducts)
     }
     editProduct(data) {
         return this.http.post<any>(this._editProduct, data)
@@ -43,4 +51,8 @@ export class DataService {
     delAllFromCart(data) {
         return this.http.post<any>(this._delAllFromCart, data)
     }
+    placeOrder(data) {
+        return this.http.post<any>(this._placeOrder, data)
+    }
+
 }

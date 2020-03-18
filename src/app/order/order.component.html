@@ -1,8 +1,151 @@
 <div class="container-fluid container1">
-  <div class="row ">
+  <div class="row">
     <div class="col box">
-      <p>order !</p>
+      <div class="container mb-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-center">Price</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of dataService.loadedCart">
+                    <td>
+                      <img
+                        src="{{ product.product.picture }}"
+                        width="60"
+                        height="60"
+                      />
+                    </td>
+                    <td>{{ product.product.proname }}</td>
+                    <td class="text-center">{{ product.qty }}</td>
+                    <td class="text-center">${{ product.total_cost }}</td>
+                    <td class="text-center"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+
+                    <td></td>
+                    <td class="text-center"><strong>Total</strong></td>
+                    <td class="text-center">
+                      <strong>${{ total }}</strong>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col mb-2">
+            <div class="row">
+              <div class="col-sm-12  col-md-6">
+                <button class="btn btn-block btn-light" (click)="goBackShop()">
+                  Go Back To Shop
+                </button>
+              </div>
+              <div class="col-sm-12 col-md-6 text-right"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col box ml-2"><p>order works!</p></div>
+
+    <div class="col box ml-2">
+      <div class="row">
+        <div class="col-lg-7 mx-auto">
+          <div class=" rounded-lg shadow-sm p-5">
+            <!-- Credit card form content -->
+            <div class="tab-content">
+              <!-- credit card info-->
+              <div id="nav-tab-card" class="tab-pane fade show active">
+                <p class="alert alert-success">Some text success or error</p>
+                <form role="form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+                  <div class="form-group">
+                    <label for="username">City:</label>
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="Jerusalem"
+                      required
+                      class="form-control"
+                      ngModel
+                    />
+                    <label for="username">Street:</label>
+                    <input
+                      type="text"
+                      name="street"
+                      placeholder="Hertzel"
+                      required
+                      class="form-control"
+                      ngModel
+                    />
+                    <label for="username">Date For Delivery:</label>
+                    <input
+                      type="date"
+                      name="date"
+                      required
+                      class="form-control"
+                      ngModel
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cardNumber">Card number</label>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        name="cardNumber"
+                        placeholder="Your card number"
+                        class="form-control"
+                        required
+                        ngModel
+                      />
+                    </div>
+                  </div>
+
+                  <button class="btn btn-block btn-primary" type="submit">
+                    Order
+                  </button>
+                  <!-- <button
+                    type="button"
+                    class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"
+                  >
+                    Confirm
+                  </button> -->
+                </form>
+              </div>
+              <!-- End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [ngClass]="{ show: showModal }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="text-center">You Successfully Placed Your Order</h4>
+        <div class="text-center">
+          <button
+            type="button"
+            (click)="redirect()"
+            class="btn btn-success center-block"
+            data-dismiss="modal"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

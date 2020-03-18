@@ -14,24 +14,22 @@
                 class="form-control"
                 name="tz"
               />
-              <span
-                *ngIf="
-                  signupForm.get('firstStep.tz').valid &&
-                  signupForm.get('firstStep.tz').touched
-                "
-                class="help-block"
-              >
-                <span
-                  *ngIf="signupForm.get('firstStep.tz').hasError['pattern']"
-                >
-                  Please enter a 9 digit ID!</span
-                >
-                <span
-                  *ngIf="signupForm.get('firstStep.tz').hasError['userExists']"
-                >
-                  User already exists, try another ID</span
-                >
+              <span *ngIf="
+                  !signupForm.get('firstStep.tz').valid &&
+                  signupForm.get('firstStep.tz').touched"
+                class="help-block">
+                ID is required
+                <span class="help-block"
+                  *ngIf="signupForm.get('firstStep.tz').errors['pattern']">
+                  Please enter a 9 digit ID!</span>
+                <span class="help-block"
+                *ngIf="signupForm.get('firstStep.tz').errors['userExists']">
+                User already exists, try another ID</span>
+
+               
               </span>
+
+             
               <!-- Please enter a 9 digit ID! -->
             </div>
           </div>
@@ -192,7 +190,108 @@
                 ngModel
                 #city="ngModel"
               >
-                <option *ngFor="let city of cityData">{{ city.name }}</option>
+                <option value="Jerusalem">Jerusalem</option>
+                <option value="Tel Aviv">Tel Aviv</option>
+                <option value="West Jerusalem">West Jerusalem</option>
+                <option value="Haifa">Haifa</option>
+                <option value="Ashdod">Ashdod</option>
+                <option value="Rishon LeẔiyyon">Rishon LeẔiyyon</option>
+                <option value="Petaẖ Tiqwa">Petaẖ Tiqwa</option>
+                <option value="Beersheba">Beersheba</option>
+                <option value="Netanya">Netanya</option>
+                <option value="H̱olon">H̱olon</option>
+                <option value="Bnei Brak">Bnei Brak</option>
+                <option value="Reẖovot">Reẖovot</option>
+                <option value="Bat Yam">Bat Yam</option>
+                <option value="Ramat Gan">Ramat Gan</option>
+                <option value="Ashkelon">Ashkelon</option>
+                <option value="Jaffa">Jaffa</option>
+                <option value="Modi‘in Makkabbim Re‘ut"
+                  >Modi‘in Makkabbim Re‘ut</option
+                >
+                <option value="Herzliya">Herzliya</option>
+                <option value="Kfar Saba">Kfar Saba</option>
+                <option value="Ra'anana">Ra'anana</option>
+                <option value="Hadera">Hadera</option>
+                <option value="Bet Shemesh">Bet Shemesh</option>
+                <option value="Lod">Lod</option>
+                <option value="Nazareth">Nazareth</option>
+                <option value="Modiin Ilit">Modiin Ilit</option>
+                <option value="Ramla">Ramla</option>
+                <option value="Nahariyya">Nahariyya</option>
+                <option value="Qiryat Ata">Qiryat Ata</option>
+                <option value="Givatayim">Givatayim</option>
+                <option value="Qiryat Gat">Qiryat Gat</option>
+                <option value="Acre">Acre</option>
+                <option value="Eilat">Eilat</option>
+                <option value="Afula">Afula</option>
+                <option value="Karmi’el">Karmi’el</option>
+                <option value="Hod HaSharon">Hod HaSharon</option>
+                <option value="Umm el Faḥm">Umm el Faḥm</option>
+                <option value="Tiberias">Tiberias</option>
+                <option value="Qiryat Moẕqin">Qiryat Moẕqin</option>
+                <option value="Qiryat Yam">Qiryat Yam</option>
+                <option value="Rosh Ha‘Ayin">Rosh Ha‘Ayin</option>
+                <option value="Ness Ziona">Ness Ziona</option>
+                <option value="Qiryat Bialik">Qiryat Bialik</option>
+                <option value="Ramat HaSharon">Ramat HaSharon</option>
+                <option value="Dimona">Dimona</option>
+                <option value="Eṭ Ṭaiyiba">Eṭ Ṭaiyiba</option>
+                <option value="Yavné">Yavné</option>
+                <option value="Or Yehuda">Or Yehuda</option>
+                <option value="Yehud-Monosson">Yehud-Monosson</option>
+                <option value="Safed">Safed</option>
+                <option value="Gedera">Gedera</option>
+                <option value="Tamra">Tamra</option>
+                <option value="Yehud">Yehud</option>
+                <option value="Daliyat al Karmel">Daliyat al Karmel</option>
+                <option value="Migdal Ha‘Emeq">Migdal Ha‘Emeq</option>
+                <option value="Sakhnīn">Sakhnīn</option>
+                <option value="Netivot">Netivot</option>
+                <option value="Mevasseret Ẕiyyon">Mevasseret Ẕiyyon</option>
+                <option value="Ofaqim">Ofaqim</option>
+                <option value="Arad">Arad</option>
+                <option value="Gan Yavne">Gan Yavne</option>
+                <option value="Qiryat Shemona">Qiryat Shemona</option>
+                <option value="Kefar Yona">Kefar Yona</option>
+                <option value="maalot Tarshīhā">maalot Tarshīhā</option>
+                <option value="Nesher">Nesher</option>
+                <option value="Tirah">Tirah</option>
+                <option value="Shoham">Shoham</option>
+                <option value="Sederot">Sederot</option>
+                <option value="Rahat">Rahat</option>
+                <option value="Tirat Karmel">Tirat Karmel</option>
+                <option value="Maghār">Maghār</option>
+                <option value="Giv'at Shmuel">Giv'at Shmuel</option>
+                <option value="Ariel">Ariel</option>
+                <option value="Kafr Kannā">Kafr Kannā</option>
+                <option value="Judeida Makr">Judeida Makr</option>
+                <option value="Kafr Qāsim">Kafr Qāsim</option>
+                <option value="Qalansuwa">Qalansuwa</option>
+                <option value="Bet She’an">Bet She’an</option>
+                <option value="Azor">Azor</option>
+                <option value="Ganei Tikva">Ganei Tikva</option>
+                <option value="Er Reina">Er Reina</option>
+                <option value="Even Yehuda">Even Yehuda</option>
+                <option value="Kafr Mandā">Kafr Mandā</option>
+                <option value="Iksāl">Iksāl</option>
+                <option value="Rekhasim">Rekhasim</option>
+                <option value="Naḥf">Naḥf</option>
+                <option value="Beit Jann">Beit Jann</option>
+                <option value="Herzliya Pituah">Herzliya Pituah</option>
+                <option value="El Fureidīs">El Fureidīs</option>
+                <option value="Kfar Yasif">Kfar Yasif</option>
+                <option value="Kābūl">Kābūl</option>
+                <option value="Tel Mond">Tel Mond</option>
+                <option value="Yeroẖam">Yeroẖam</option>
+                <option value="Deir Ḥannā">Deir Ḥannā</option>
+                <option value="Dabbūrīya">Dabbūrīya</option>
+                <option value="Mazkeret Batya">Mazkeret Batya</option>
+                <option value="Bnei Ayish">Bnei Ayish</option>
+                <option value="Bu‘eina">Bu‘eina</option>
+                <option value="Jaljūlya">Jaljūlya</option>
+                <option value="Bīr el Maksūr">Bīr el Maksūr</option>
+                <option value="Bet Dagan">Bet Dagan</option>
               </select>
               <span *ngIf="!city.valid && city.touched" class="help-block">
                 This is a mandatory field</span

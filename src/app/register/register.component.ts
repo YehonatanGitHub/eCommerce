@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   listCitys: ListCity[] = [];
   public cityData;
   token: string = null;
-  constructor(private authService: AuthService, private router: Router, private dataService: DataService) { }
+  constructor(private authService: AuthService, private router: Router, private   dataService: DataService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
