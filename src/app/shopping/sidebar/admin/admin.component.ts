@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
   editProduct: Product;
   isEdit: boolean = false;
   isNew: boolean = false;
-  private _opened: boolean = false;
+  public _opened: boolean = false;
   waitForOneSecond() {
     return new Promise(resolve => {
       setTimeout(() => {
@@ -30,7 +30,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  constructor(private http: HttpClient, private shoppingService: ShoppingService, private dataService: DataService) {
+  constructor(private http: HttpClient, private shoppingService: ShoppingService, public dataService: DataService) {
     this.activatedSub = this.shoppingService.statuseEditProduct.subscribe(
       (editProduct: Product) => {
         this.editProduct = editProduct;
@@ -60,7 +60,7 @@ export class AdminComponent implements OnInit {
     this.activatedSub.unsubscribe();
   }
 
-  private _toggleAddProduct() {
+  public toggleAddProduct() {
     this.isNew = true;
     this.isEdit = false;
     this._opened = !this._opened;

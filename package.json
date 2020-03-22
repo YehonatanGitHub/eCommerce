@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
+    "@angular/cli": "8.3.21",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -25,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.2.0",
     "bootstrap": "^4.4.1",
     "bootstrap-input-spinner": "^1.13.3",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "ng-dblclick": "^1.0.1",
     "ng-sidebar": "^9.2.0",

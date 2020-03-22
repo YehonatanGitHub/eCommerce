@@ -10,7 +10,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class AppComponent implements OnInit {
   helper = new JwtHelperService();
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
   title = 'my-store';
 
   ngOnInit() {

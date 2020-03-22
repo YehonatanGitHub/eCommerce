@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public token: any;
   helper = new JwtHelperService();
 
-  constructor(private authService: AuthService, private _router: Router) { }
+  constructor(public authService: AuthService, private _router: Router) { }
   ngOnInit() { }
 
   onSubmit(form: NgForm) {

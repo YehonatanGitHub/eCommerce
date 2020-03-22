@@ -9,7 +9,7 @@ import { DataService } from 'src/app/shared/data.service';
 export class SnapshotComponent implements OnInit {
   orders: any;
   products: any;
-  constructor(private dataService: DataService) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit() {
     this.getOrders()

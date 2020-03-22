@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   private refreshSub: Subscription;
   private getDataSub: Subscription;
 
-  constructor(private dataService: DataService, private authService: AuthService, private shoppingService: ShoppingService, private _router: Router) {
+  constructor(public dataService: DataService, public authService: AuthService, private shoppingService: ShoppingService, private _router: Router) {
     this.refreshSub = this.shoppingService.refreshProducts.subscribe(() => {
       console.log("getallproducts");
       this.ngOnInit();

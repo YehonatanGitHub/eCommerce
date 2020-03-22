@@ -16,7 +16,7 @@ export class OrderComponent implements OnInit {
   cartId: any = this.authService.decodedToken.cartId;
   showModal: Boolean = false;
 
-  constructor(private authService: AuthService, private dataService: DataService, private _router: Router) { }
+  constructor(public authService: AuthService, public dataService: DataService, private _router: Router) { }
 
   ngOnInit() {
     this.cartId = this.authService.decodedToken.cartId;

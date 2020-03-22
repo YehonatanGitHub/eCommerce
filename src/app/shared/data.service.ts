@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../shopping/products/product/product.model';
 // import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment'
 @Injectable({ providedIn: 'root' })
 export class DataService {
 
     public loadedCart: any = [];
 
-    private _ProductsUrl = 'http://localhost:3000/admin/products';
+    private _ProductsUrl = environment.apiUrl + '/admin/products';
     private _CityNames = 'https://raw.githubusercontent.com/royts/israel-cities/master/israel-cities.json';
-    private _editProduct = 'http://localhost:3000/admin/edit-product';
-    private _addProduct = 'http://localhost:3000/admin/add-product';
-    private _addProductToCart = 'http://localhost:3000/shop/addtocart';
-    private _getCart = 'http://localhost:3000/shop/cart';
-    private _delFromCart = 'http://localhost:3000/shop/delfromcart';
-    private _delAllFromCart = 'http://localhost:3000/shop/delallfromcart';
-    private _placeOrder = 'http://localhost:3000/shop/order';
-    private _getOrders = 'http://localhost:3000/shop/getOrders';
-    private _getProducts = 'http://localhost:3000/shop/getproducts';
+    private _editProduct = environment.apiUrl + '/admin/edit-product';
+    private _addProduct = environment.apiUrl + '/admin/add-product';
+    private _addProductToCart = environment.apiUrl + '/shop/addtocart';
+    private _getCart = environment.apiUrl + '/shop/cart';
+    private _delFromCart = environment.apiUrl + '/shop/delfromcart';
+    private _delAllFromCart = environment.apiUrl + '/shop/delallfromcart';
+    private _placeOrder = environment.apiUrl + '/shop/order';
+    private _getOrders = environment.apiUrl + '/shop/getOrders';
+    private _getProducts = environment.apiUrl + '/shop/getproducts';
     constructor(private http: HttpClient) { }
 
     fetchProducts() {

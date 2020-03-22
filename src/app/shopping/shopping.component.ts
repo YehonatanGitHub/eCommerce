@@ -9,13 +9,13 @@ import { AuthService } from '../shared/auth.service';
   providers: [ShoppingService]
 })
 export class ShoppingComponent implements OnInit {
-  private _opened: boolean = true;
+  public _opened: boolean = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() { }
 
-  private _toggleSidebar() {
+  public _toggleSidebar() {
     this._opened = !this._opened;
   }
 

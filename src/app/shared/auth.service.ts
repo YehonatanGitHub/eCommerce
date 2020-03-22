@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../home/login/user.model';
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
-
+import { environment } from '../../environments/environment'
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
@@ -11,9 +11,9 @@ export class AuthService {
     decodedToken: any;   // new Subject<User>();
     regularUser: boolean = false;
     adminUser: boolean = false;
-    private _registerUrl = 'http://localhost:3000/users/add-user';
-    private _checkIfUserUrl = 'http://localhost:3000/users/checkifuser';
-    private _loginUrl = 'http://localhost:3000/users/login';
+    private _registerUrl = environment.apiUrl + '/users/add-user';
+    private _checkIfUserUrl = environment.apiUrl + '/users/checkifuser';
+    private _loginUrl = environment.apiUrl + '/users/login';
 
 
     constructor(private http: HttpClient, private _router: Router) { }

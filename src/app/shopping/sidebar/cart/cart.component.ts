@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
       }, 100);
     });
   }
-  constructor(private http: HttpClient, private shoppingService: ShoppingService, private authService: AuthService, private dataService: DataService, private _router: Router) {
+  constructor(private http: HttpClient, private shoppingService: ShoppingService, public authService: AuthService, public dataService: DataService, private _router: Router) {
     this.activatedSub2 = this.shoppingService.statuseAddProduct.subscribe(
       (addProduct: Product) => {
         this.addProduct = addProduct;
@@ -115,8 +115,8 @@ export class CartComponent implements OnInit {
 
 
 
-  delAllCart(i) {
-    this.dataService.delAllFromCart(i)
+  delAllCart() {
+    this.dataService.delAllFromCart(this.cartId)
       .subscribe(responseData => {
         console.log(responseData);
         this.total = 0;
